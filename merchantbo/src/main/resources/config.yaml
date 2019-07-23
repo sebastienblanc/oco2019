@@ -1,0 +1,36 @@
+kumuluzee:
+  name: Devoxx Demo
+  env:
+    name: Devoxx-2019
+  server:
+      http:
+          port: 8081
+  graphql:
+    mapping: graphql
+    ui:
+      enabled: true
+    defaults:
+      offset: 0
+      limit: 20
+  datasources:
+    - jndi-name: jdbc/bomerchant
+      connection-url: jdbc:hsqldb:hsql://localhost/devoxx
+      username: sa
+      password: 
+      pool:
+        max-size: 5
+        connection-timeout: 2000
+  health:
+    servlet:
+      mapping: /health
+      enabled: true
+    logs:
+      enabled: false
+      level: INFO
+      period-s: 30
+    checks:
+      data-source-health-check:
+        jndi-name: jdbc/bomerchant
+      disk-space-health-check:
+        threshold: 100000000
+      
